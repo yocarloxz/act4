@@ -1,0 +1,91 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class VisitanteInfo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Variables para almacenar información
+        String nombreVisitante;
+        byte edad;
+        short numeroApartamentosVisitados;
+        int identificacionVisitante;
+        long telefono;
+        double alturaVisitante;
+        char inicialNombre;
+        List<Float> tiemposEstadia = new ArrayList<>();
+        List<LocalDate> fechasVisitas = new ArrayList<>();
+        int totalVisitas;
+
+        // Leer información del visitante
+        System.out.print("Introduce el nombre del visitante: ");
+        nombreVisitante = scanner.nextLine();
+
+        System.out.print("Introduce la edad del visitante: ");
+        edad = scanner.nextByte();
+        scanner.nextLine();
+
+        System.out.print("Introduce el número de apartamentos visitados: ");
+        numeroApartamentosVisitados = scanner.nextShort();
+
+        System.out.print("Introduce la identificación del visitante: ");
+        identificacionVisitante = scanner.nextInt();
+
+        System.out.print("Introduce el teléfono del visitante (número largo): ");
+        telefono = scanner.nextLong();
+
+        System.out.print("Introduce la altura del visitante en metros (decimal): ");
+        alturaVisitante = scanner.nextDouble();
+
+        System.out.print("Introduce la inicial del nombre del visitante: ");
+        inicialNombre = scanner.next().charAt(0);
+        scanner.nextLine();
+
+        System.out.print("Introduce el número total de visitas realizadas durante la semana: ");
+        totalVisitas = scanner.nextInt();
+        scanner.nextLine();
+
+        // Leer información de cada visita
+        for (int i = 0; i < totalVisitas; i++) {
+            System.out.print("Introduce el tiempo de estadía para la visita " + (i + 1) + " (en horas): ");
+            float tiempoEstadia = scanner.nextFloat();
+            scanner.nextLine();
+            tiemposEstadia.add(tiempoEstadia);
+
+            System.out.print("Introduce la fecha de la visita " + (i + 1) + " (formato yyyy-mm-dd): ");
+            LocalDate fechaVisita = LocalDate.parse(scanner.nextLine());
+            fechasVisitas.add(fechaVisita);
+        }
+
+        // Cálculos
+        float tiempoTotal = 0;
+        for (float tiempo : tiemposEstadia) {
+            tiempoTotal += tiempo;
+        }
+        float tiempoPromedio = tiempoTotal / totalVisitas;
+
+        // Resultados
+        System.out.println("\nInformación del Visitante:");
+        System.out.println("Nombre: " + nombreVisitante);
+        System.out.println("Inicial del nombre: " + inicialNombre);
+        System.out.println("Edad: " + edad + " años");
+        System.out.println("Número de apartamentos visitados: " + numeroApartamentosVisitados);
+        System.out.println("Identificación del visitante: " + identificacionVisitante);
+        System.out.println("Teléfono del visitante: " + telefono);
+        System.out.println("Altura del visitante (metros): " + alturaVisitante);
+        System.out.println("Número total de visitas: " + totalVisitas);
+        System.out.println("Tiempo promedio de estadía (horas): " + tiempoPromedio);
+        System.out.println("Fechas de las visitas: " + fechasVisitas);
+
+        if (edad >= 18) {
+            System.out.println("El visitante es mayor de edad.");
+        } else {
+            System.out.println("El visitante es menor de edad.");
+        }
+
+        scanner.close();
+    }
+}
